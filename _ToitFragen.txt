@@ -1,0 +1,2 @@
+- Wie MAC_Adresse ermitteln?
+- Wie auf pin-Ereignis mit timeout warten?
