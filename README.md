@@ -8,8 +8,15 @@ Triggered by "Digitale-Dinge" (see: www.digitale-dinge.de/blog/episode58_esp32ga
 - 1_setupJaguar_ESP32
 - 2_adcTest
 - 3_soilSensorTest
+- 4_mqttTest
 
 
+## Toit/Jaguar commands
+- jag flash --name ToitTest --port COM7
+- jag run <filename>.toit
+- jag watch <filename>.toit
+- jag monitor
+- jag container install <name> <filename>.toit
 
 ## references
 - https://github.com/okaki-gardening/toit-firmware

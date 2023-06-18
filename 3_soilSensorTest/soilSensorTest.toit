@@ -3,7 +3,7 @@ Toit Test application implements a simple ADC test for ESP32.
 
 - Sensor: Capacitive Soil Moisture Sensor v1.2
 - has analog output
-- dry: Uout:3.29 V, Humidity H = 0%
+- dry: Uout:3.299 V, Humidity H = 0%
 - wet: Uout:1.53 V, Humidity H = 100%
 */
 
@@ -74,7 +74,7 @@ main:
         adcU100 := (adcADC.get --samples=100) - AdcVoltageOffsetError
         diff := adcU - adcU100
         sign := diff > 0 ? "+" : ""
-        print getTime + "$(%3d nSamples). $(%3d humidity adcU) %,  Uadc: $(%3.3f adcU) V, (avg: $(%3.3f adcU100) V, $(sign)$(%3.3f diff))"
+        print getTime + "$(%3d nSamples). H: $(%3d humidity adcU) %,  Uadc: $(%3.3f adcU) V, (avg: $(%3.3f adcU100) V, $(sign)$(%3.3f diff))"
         led.set 0
         
 
