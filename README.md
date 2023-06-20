@@ -26,11 +26,11 @@ sensor#  | U dry [V]| U wet[V]
 
 
 ## Toit/Jaguar commands
-- jag flash --name ToitTest --port COM7
-- jag run <filename>.toit
-- jag watch <filename>.toit
-- jag monitor
-- jag container install <name> <filename>.toit
+- 'jag flash --name ToitTest --port COM7'
+- 'jag run <filename>.toit'
+- 'jag watch <filename>.toit'
+- 'jag monitor'
+- 'jag container install <name> <filename>.toit'
 
 ## references
 - https://github.com/okaki-gardening/toit-firmware
