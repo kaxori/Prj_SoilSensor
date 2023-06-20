@@ -154,7 +154,7 @@ main:
         hSensor := humidity uSensor
 
         voltageStr := "$(%3.3f uSensor) V"
-        humidityStr := "$(%3d hSensor) %"
+        humidityStr := "$(%3d hSensor)"
 
 
         debugMsg := getTime + "$(%3d nSamples). " 
@@ -163,7 +163,10 @@ main:
 
         print debugMsg
 
-        jsonMsg := "{'time':'$(getTime)', 'nSamples':'$nSamples', 'voltage':'$(voltageStr)', 'humidity':'$(humidityStr)'}"
+        client.publish MqttTopicHumidity humidityStr.to_byte_array
+
+
+        jsonMsg := "{'time':'$(getTime)', 'nSamples':$nSamples, 'voltage':$(voltageStr), 'humidity':$(humidityStr)}"
 
         //print jsonMsg + "\n"
         client.publish MqttTopicSoilSensor jsonMsg.to_byte_array
