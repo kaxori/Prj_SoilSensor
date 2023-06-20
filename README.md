@@ -24,19 +24,6 @@ sensor#  | U dry [V]| U wet[V]
 #2|2,97|1,5
 #3|2,95|1,53
 
-## Sensor data
-### Capacitive Soil Moisture Sensor V1.2
-
-#### measuring sensor voltages in dry/wet condition
-*voltages measured with multimeter*
-
-sensor#  | U dry [V]| U wet[V]
-:---:|:---:|:---:
-| | *in air* | *in water* |
-| | H 0% | H 100% |
-#1 | 2,95 | 1,5
-#2|2,97|1,5
-#3|2,95|1,53
 
 ## Toit/Jaguar commands
 - jag flash --name ToitTest --port COM7
