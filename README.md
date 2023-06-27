@@ -9,6 +9,8 @@ Triggered by "Digitale-Dinge" (see: www.digitale-dinge.de/blog/episode58_esp32ga
 - 2_adcTest
 - 3_soilSensorTest
 - 4_mqttTest
+- 5 small OLED added, current humidity and history diagram
+
 
 ## Sensor data
 ### Capacitive Soil Moisture Sensor V1.2
@@ -19,10 +21,10 @@ Triggered by "Digitale-Dinge" (see: www.digitale-dinge.de/blog/episode58_esp32ga
 sensor#  | U dry [V]| U wet[V]
 :---:|:---:|:---:
 | | *in air* | *in water* |
-| | H 0% | H 100% |
-#1 | 2,95 | 1,5
-#2|2,97|1,5
-#3|2,95|1,53
+| | H ~0% | H ~100% |
+#1 | 3.275 | 1.56
+#2|3.275|1.56
+#3|3.275|1.50
 
 
 ## Toit/Jaguar commands
