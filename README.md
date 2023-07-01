@@ -4,12 +4,14 @@ Triggered by "Digitale-Dinge" (see: www.digitale-dinge.de/blog/episode58_esp32ga
 
 *If you want to test out Toit/Jaguar on ESP32, you can use these simple examples for your startup.*
 
-## examples
+## examples 
+*stepwise added functionality:*
 - 1_setupJaguar_ESP32
 - 2_adcTest
 - 3_soilSensorTest
 - 4_mqttTest
 - 5 small OLED added, current humidity and history diagram
+- 6 firmware improvments: actionRepeater, buttonHandler
 
 
 ## Sensor data
