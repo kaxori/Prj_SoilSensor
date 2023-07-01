@@ -44,9 +44,7 @@ import mqtt
 import encoding.json as json
 
 import ringbuffer show *
-
-//import action-repeater show *
-
+import actionRepeater show *
 
 // --------------------------------------------------------
 // local imports
@@ -87,6 +85,9 @@ main:
     - led indicates sensor data preocessing
     - interval can be change via mqtt
     - ntp time
+    - actionRepeater
+    - buttonHandler
+    - mqtt 
     """
 
 
@@ -124,38 +125,45 @@ main:
     mqttClient.publish MqttTopicState "{'state':'restarted'}".to_byte_array
     mqttClient.publish MqttTopicState "{'interval':'$(PollInterval)'}".to_byte_array
 
+
+    // define repeated action for sensor data handling
+    sensorAction := ActionRepeater --timeout_ms=PollInterval --action=::
+        led.set 1   // indicate active sensor processing
+        pollSensor
+        nSamples += 1
+        led.set 0   // clear indicator
+
+
+    // define button handler to trigger sensor 
+    buttonHandler := task ::
+      print "waiting for button ..."
+      while true:
+        pushButton.wait_for 0
+        sleep --ms=10 // Debounce.
+        pushButton.wait_for 1
+        sleep --ms=10 // Debounce.
+        print "button"
+        sensorAction.trigger
+
+
     mqttClient.subscribe MqttTopicInterval:: | topic payload |
         print "Received: $topic: $payload.to_string_non_throwing"
         decoded := json.decode payload
         PollInterval = decoded.to_int
+        sensorAction.repeat --timeout_ms=PollInterval
         print "PollInterval := $(PollInterval)"
         mqttClient.publish MqttTopicState "{'interval':'$(PollInterval)}',".to_byte_array
-        
 
 
-    print "poll interval: \t$PollInterval ms"
-    sleep --ms=3_000
+    sensorAction.start //10_000
+    print "action repetition started - interval: \t$PollInterval ms"
+    
     print "\n" + getTime + "starting application loop ..."
+
+    // Idle !
     while true:
+      sleep --ms=1000
 
-        led.set 1   // indicate active sensor processing
-        pollSensor
-        led.set 0   
-
-        nSamples += 1
-        
-        /**
-            wait for push button or timeout
-            - ??? how to terminate button wait by message ?
-        */
-        exception := catch --unwind=(: it != DEADLINE_EXCEEDED_ERROR):
-            with_timeout --ms=PollInterval:
-
-                // wait for button press&release
-                pushButton.wait_for 0
-                sleep --ms=10 // Debounce.
-                pushButton.wait_for 1
-                sleep --ms=10 // Debounce.
 
 
 
