@@ -8,6 +8,12 @@ NumGpioAdc0 ::= 36          // Adc0 port
 
 DeviceName ::= "SoilSensorPrototype"
 
+
+BUCKET_NAME ::= "soil-sensor"
+BUCKET_KEY_RESTARTS ::= "nRestarts"
+BUCKET_KEY_IDSENSOR ::= "idSensor"
+
+
 // --------------------------------------------------------
 // MQTT
 MqttServerAddress ::= "192.168.178.196"
